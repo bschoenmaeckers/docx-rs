@@ -48,16 +48,15 @@ impl<'a> Table<'a> {
             .flat_map(|content| content.iter_text_mut())
     }
 
-    pub fn replace_text<'b, I, T, S>(&mut self, dic: T) -> crate::DocxResult<()>
+    pub fn replace_text<'b, I, T, S>(&mut self, dic: T)
     where
         S: AsRef<str> + 'b,
         T: IntoIterator<Item = I> + Copy,
         I: Borrow<(S, S)>,
     {
         for row in self.rows.iter_mut() {
-            row.replace_text(dic)?;
+            row.replace_text(dic);
         }
-        Ok(())
     }
 }
 

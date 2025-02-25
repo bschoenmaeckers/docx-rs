@@ -110,7 +110,7 @@ impl<'a> Paragraph<'a> {
             .flatten()
     }
 
-    pub fn replace_text<'b, I, T, S>(&mut self, dic: T) -> crate::DocxResult<()>
+    pub fn replace_text<'b, I, T, S>(&mut self, dic: T)
     where
         S: AsRef<str> + 'b,
         T: IntoIterator<Item = I> + Copy,
@@ -119,13 +119,11 @@ impl<'a> Paragraph<'a> {
         for content in self.content.iter_mut() {
             match content {
                 ParagraphContent::Run(r) => {
-                    r.replace_text(dic)?;
+                    r.replace_text(dic);
                 }
                 _ => {}
             }
         }
-
-        Ok(())
     }
 }
 

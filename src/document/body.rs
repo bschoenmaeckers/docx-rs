@@ -49,7 +49,7 @@ impl<'a> Body<'a> {
         let _d = self.replace_text(&[(old, new)]);
     }
 
-    pub fn replace_text<'b, I, T, S>(&mut self, dic: T) -> crate::DocxResult<()>
+    pub fn replace_text<'b, I, T, S>(&mut self, dic: T)
     where
         S: AsRef<str> + 'b,
         T: IntoIterator<Item = I> + Copy,
@@ -58,10 +58,10 @@ impl<'a> Body<'a> {
         for content in self.content.iter_mut() {
             match content {
                 BodyContent::Paragraph(p) => {
-                    p.replace_text(dic)?;
+                    p.replace_text(dic);
                 }
                 BodyContent::Table(t) => {
-                    t.replace_text(dic)?;
+                    t.replace_text(dic);
                 }
                 BodyContent::SectionProperty(_) => {}
                 BodyContent::Sdt(_) => {}
@@ -69,7 +69,6 @@ impl<'a> Body<'a> {
                 BodyContent::Run(_) => {}
             }
         }
-        Ok(())
     }
 
     // pub fn iter_text(&self) -> impl Iterator<Item = &Cow<'a, str>> {

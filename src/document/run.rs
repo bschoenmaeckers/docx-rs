@@ -154,7 +154,7 @@ impl<'a> Run<'a> {
         self.replace_text(&[(old, new)]);
     }
 
-    pub fn replace_text<'b, I, T, S>(&mut self, dic: T) -> DocxResult<()>
+    pub fn replace_text<'b, I, T, S>(&mut self, dic: T)
     where
         S: AsRef<str> + 'b,
         T: IntoIterator<Item = I> + Copy,
@@ -172,8 +172,6 @@ impl<'a> Run<'a> {
                 _ => {}
             }
         }
-
-        Ok(())
     }
 }
 

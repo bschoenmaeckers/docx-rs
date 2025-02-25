@@ -55,7 +55,7 @@ impl<'a> TableCell<'a> {
             .flatten()
     }
 
-    pub fn replace_text<'b, I, T, S>(&mut self, dic: T) -> crate::DocxResult<()>
+    pub fn replace_text<'b, I, T, S>(&mut self, dic: T)
     where
         S: AsRef<str> + 'b,
         T: IntoIterator<Item = I> + Copy,
@@ -63,10 +63,9 @@ impl<'a> TableCell<'a> {
     {
         for content in self.content.iter_mut() {
             match content {
-                TableCellContent::Paragraph(p) => p.replace_text(dic)?,
+                TableCellContent::Paragraph(p) => p.replace_text(dic),
             }
         }
-        Ok(())
     }
 }
 

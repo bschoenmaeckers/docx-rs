@@ -83,7 +83,7 @@ impl<'a> TableRow<'a> {
             .flatten()
     }
 
-    pub fn replace_text<'b, I, T, S>(&mut self, dic: T) -> crate::DocxResult<()>
+    pub fn replace_text<'b, I, T, S>(&mut self, dic: T)
     where
         S: AsRef<str> + 'b,
         T: IntoIterator<Item = I> + Copy,
@@ -91,10 +91,9 @@ impl<'a> TableRow<'a> {
     {
         for cell in self.cells.iter_mut() {
             if let TableRowContent::TableCell(c) = cell {
-                c.replace_text(dic)?
+                c.replace_text(dic);
             }
         }
-        Ok(())
     }
 }
 

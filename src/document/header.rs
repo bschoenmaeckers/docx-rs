@@ -33,7 +33,7 @@ impl<'a> Header<'a> {
         let _d = self.replace_text(&[(old, new)]);
     }
 
-    pub fn replace_text<'b, I, T, S>(&mut self, dic: T) -> crate::DocxResult<()>
+    pub fn replace_text<'b, I, T, S>(&mut self, dic: T)
     where
         S: AsRef<str> + 'b,
         T: IntoIterator<Item = I> + Copy,
@@ -42,7 +42,7 @@ impl<'a> Header<'a> {
         for content in self.content.iter_mut() {
             match content {
                 BodyContent::Paragraph(p) => {
-                    p.replace_text(dic)?;
+                    p.replace_text(dic);
                 }
                 BodyContent::Table(_) => {}
                 BodyContent::SectionProperty(_) => {}
@@ -51,7 +51,6 @@ impl<'a> Header<'a> {
                 BodyContent::Run(_) => {}
             }
         }
-        Ok(())
     }
 }
 
